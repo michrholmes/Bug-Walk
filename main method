@@ -1,0 +1,113 @@
+//***************************************************************************************
+// BugWalk.java            Author: Michelle Holmes   
+//
+// Demonstrates the creation of multiple Bug objects and user input controlled 
+// movements of Bug objects that have landed on a horizontal wire. 
+//***************************************************************************************
+
+import java.util.Scanner;
+
+public class BugWalk 
+{
+//-------------------------------------------------------------------------------------
+// Creates three bug objects and acts as a driver program utilizing the methods of the 
+// Bug class to walk, reverse, dance and hop. These movement commands are based off 
+// of user input.
+//-------------------------------------------------------------------------------------
+	public static void main(String[] args) 
+	{
+		int move, steps, reverse;  // Declares integer variables to store movement values.
+		
+		Bug greenBug = new Bug();        // Instantiates 3 new Bug objects
+		Bug redBug = new Bug();          // using the Bug class.
+		Bug pinkBug = new Bug();
+		
+		Scanner scan = new Scanner(System.in); // Instantiates a new Scanner object.
+		
+		
+		System.out.println("Lets play a game called Bug Walk.");                           // Sets up the Bug game and
+		System.out.println("A Green Bug, Red Bug and Pink Bug have landed on a wire. ");   // sets up the starting
+		System.out.println("The bugs are starting in the following Postions: ");           // positions for each Bug
+		System.out.println("Green: " + greenBug.getPosition() + " Red: " + redBug.getPosition() +  // using the 
+				" Pink: " + pinkBug.getPosition());												// getPosition() method.
+		
+		
+		// Green Bug portion of program ----------------------------------------------------------------------------------------------------
+		System.out.println("Lets tell the Green Bug to move 8 times. ");  // Informs user we will require
+		System.out.println("");                                          // 8 movement commands for the Green Bug.
+	
+		for (int i = 0; i < 8; i++)   // Sets up "for" loop to accept 8 movement commands.
+		{
+			System.out.println("Enter 1 to move forward or -1 to move backwards. ");  //User movement instructions.
+			move = scan.nextInt();    				// User command scanned into move variable.
+		
+			if (move == 1 || move == -1) //"if-else" loop to ensure user enters allowable command either 1 or -1.
+			{							 							//Uses move() method to move Bug in appropriate direction using variable  
+				System.out.print("The Green Bug is now in position: " + greenBug.move(move));    // move as parameter. 
+				System.out.println(greenBug); //toString() method displaying Bug icon and direction Bug is moving. 				
+			}
+			else 
+				System.out.println("Error please enter a valid number! "); //Error message if user input is not 
+		}																//appropriate integer 1 or -1.
+		
+		
+		//Red Bug portion of program -------------------------------------------------------------------------------------------------------- 
+		 System.out.println("");
+		 System.out.println("");
+		 System.out.println("Lets make the Red Bug dance!");     //Sets up the bug dance with 2nd Bug (Red) object. Directs user allowable
+		 System.out.println("Enter a number of steps you want the Red Bug to dance to (0-10): ");  //range of number input 0-10.
+		 steps = scan.nextInt();  // Scans user integer input into steps variable.
+		 
+		 while (steps > 10 || steps < 0)  //"While" loop to display error message until user enters integer
+		 {									// of an allowable range 0-10.
+			System.out.println("Error Please Enter a valid number 0-10: ");
+		 	steps = scan.nextInt();   //Allows user to re-enter integer into steps variable which replaces previous value.
+		 }
+		 
+		 reverse = steps; //Creates a new variable to hold current value of steps- used when Bug turns around.
+		 
+		 System.out.println("The Red Bug is doing it's dance moving from the following positions: ");
+								//"for" loop using the user integer input in steps to count loop repetitions and
+		 for (int count = 0; count < steps; count++)     //uses steps as a parameter for the dance() method to represent walking forward. 
+			 System.out.print(redBug.dance(steps) + "\t");    
+		 	 System.out.println(redBug);  //toString() method displaying Bug icon and direction Bug is walking.
+			
+		 System.out.println("Then Bug stops and turns around and dances the same steps back: ");
+		 reverse = reverse * -1;   //Changes variable to a negative integer.
+		 
+		 							//"for" loop  using the variable reverse to count loop repetitions and
+		 for (int count = 0; count > reverse; count--)  // and uses reverse as dance() method call parameter to represent walking back.
+			System.out.print(redBug.dance(reverse) + "\t");
+		 	System.out.println(redBug);  //toString() method displaying Bug icon and direction Bug is walking.
+		 
+		 	
+		 	
+		 //Pink Bug portion of program -------------------------------------------------------------------------------------------	
+		 System.out.println("");
+		 System.out.println("");		//Sets up Pink Bug game with 3rd Bug object. Directs user allowable range of input 0-10.
+		 System.out.println("Now lets make the Pink Bug dance a few steps and hop on the spot:");
+		 System.out.println("Enter the number of steps you want the Pink Bug to dance and hop (0-10): ");
+		 steps = scan.nextInt();
+		 
+		 while (steps > 10 || steps < 0)
+		 {						//"While" loop to display error message until user enters integer within allowable
+			System.out.println("Error Please Enter a valid number 0-10: ");  // range 0-10.
+		 	steps = scan.nextInt(); //Allows user to re-enter integer into steps variable which replaces previous value.
+		 }
+		 						//"for" loop using the user integer input in steps to count loop repetitions and
+		 for (int count = 0; count < steps; count++)	//uses steps as a parameter for the dance() method to represent walking
+			 System.out.print(pinkBug.dance(steps) + "\t");				//forward. 
+		 
+		 						//"for" loop using the user integer input in steps to count loop repetitions on
+		 for (int count = 0; count < steps; count++)   //how many times the getCurrentPosition() method is called to represent hopping.
+		 	 System.out.print(pinkBug.getCurrentPosition(steps)); //Calls getCurrentPosition() method using steps as parameter.
+		 	 System.out.println(pinkBug);  //toString() method displaying Bug icon and direction Bug is walking.
+		 	 
+		 	System.out.println("The final positions for each bug are: ");
+		 	System.out.println("Green: " + greenBug.getCurrentPosition() + " Red: " + redBug.getCurrentPosition() + 
+					" Pink: " + pinkBug.getCurrentPosition()); //Calls the getCurrentPosition() method to display all three
+		 														// Bugs current positions after walking, dancing and hopping.
+		
+	}
+
+}
