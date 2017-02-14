@@ -1,0 +1,106 @@
+//***************************************************************************************
+// Bug.java            Author: Michelle Holmes   
+//
+// Represents a Bug with basic movements such as forward, backward and dance. 
+//***************************************************************************************
+
+public class Bug 
+{
+			//Declares private integer variables to ensure encapsulation. 
+private int position, newPosition, direction, pattern, currentPosition;
+
+//------------------------------------------------------------------------------------
+// Sets up Bug and it's starting position at 0.
+//------------------------------------------------------------------------------------
+public Bug()
+{
+	position = 0;
+}
+
+//-------------------------------------------------------------------------------------
+//Sets the position of the Bug.
+//-------------------------------------------------------------------------------------
+public void setPosition(int num3)
+{
+	if (num3 >= 0 && num3 < 11)
+		position = num3;
+}
+
+//-------------------------------------------------------------------------------------
+// Returns Bug position. 
+//-------------------------------------------------------------------------------------
+public int getPosition()
+{
+	return position;
+}
+
+//------------------------------------------------------------------------------------
+// Moves Bug by one unit. Determines if bug is walking in a forward (+) or backward (-) 
+// direction depending of if formal parameter is positive or negative. 
+// Returns integer representation of bugs new position.
+//------------------------------------------------------------------------------------
+public int move(int num1)
+{
+		direction = num1;
+		newPosition += num1;
+		return newPosition;
+		
+} 
+
+//-------------------------------------------------------------------------------------
+// Moves bug backward (-) or forward (+) incrementally based of formal parameter
+// being positive or negative integer value. Determines direction bug is facing.
+// Returns integer value of Bugs dance pattern.
+//-------------------------------------------------------------------------------------
+public int dance(int num2)
+{
+			direction = num2;
+			
+			if (num2 > 0)
+				pattern = newPosition += 1;
+			else
+				pattern = newPosition -= 1;
+			
+		return pattern;
+		
+}
+
+//-------------------------------------------------------------------------------------
+// Returns Bugs current integer position after it has had movement to a new position.
+// Determines what direction Bug is facing. 
+//-------------------------------------------------------------------------------------
+public int getCurrentPosition(int num2)
+{
+			direction = num2;
+			
+			currentPosition = newPosition;
+			
+		return currentPosition;
+		
+}
+
+//-------------------------------------------------------------------------------------
+// Overloaded getCurrentPosition() method only returning integer value of Bugs
+// current position.
+//-------------------------------------------------------------------------------------
+public int getCurrentPosition()
+{
+			
+			currentPosition = newPosition;
+			
+		return currentPosition;
+		
+}
+
+//-------------------------------------------------------------------------------------
+// Returns String containing Bug object character and direction Bug is facing.
+//-------------------------------------------------------------------------------------
+public String toString()
+{
+	if (direction == 0)
+		return "Bug is standing still   OOO:";
+		
+	return (direction > 0) ? "\t Moving Forward:\t OOO:-->" : "\tMoving Backward:\t <--:OOO" ;
+}
+
+}
